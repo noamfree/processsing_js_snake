@@ -14,9 +14,9 @@ var  SnakeHead = function(position, size) {
 
 SnakeHead.prototype = Object.create(Mover.prototype);
 
-SnakeHead.prototype.draw = function() {
+SnakeHead.prototype.draw = function(drawer) {
 	fill(SNAKE_HEAD_COLOR);
-	ellipse(this.position.x, this.position.y, this.size, this.size);
+	drawer.ellipse(this.position.x, this.position.y, this.size, this.size);
 	line_by_point_len_angle(this.position.x,
 		this.position.y,
 		this.size/2,
@@ -37,9 +37,9 @@ var  SnakePart = function(position, to_follow, size) {
 };
 SnakePart.prototype = Object.create(Mover.prototype);
 
-SnakePart.prototype.draw = function() {
+SnakePart.prototype.draw = function(drawer) {
 	fill(SNAKE_PART_COLOR);
-	ellipse(this.position.x, this.position.y, this.size, this.size);
+	drawer.ellipse(this.position.x, this.position.y, this.size, this.size);
 };
 
 SnakePart.prototype.move = function() {
@@ -62,9 +62,9 @@ var Snake = function(position, length) {
 	
 };
 
-Snake.prototype.draw = function() {
+Snake.prototype.draw = function(drawer) {
 	for (var i=this.parts.length-1; i>=0; i--) {
-		this.parts[i].draw();
+		this.parts[i].draw(drawer);
 	}
 };
 
